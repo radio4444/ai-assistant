@@ -1,7 +1,7 @@
 'use client';
 
 import {Box, Button, Stack, TextField} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Home() {
     const [messages, setMessages] = useState([{
@@ -67,6 +67,16 @@ export default function Home() {
             sendMessage();
         }
     };
+
+    const messageEndRef = useRef(null)
+
+    const scrollToBottom = () => {
+        messageEndRef.current?.scrollIntoView({behavior: "smooth"})
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages]);
 
     return (
         <Box
