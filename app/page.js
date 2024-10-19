@@ -10,6 +10,15 @@ export default function Home() {
     }])
     const [message, setMessage] = useState('')
 
+    const sendMessage = async () => {
+        setMessage('')
+        setMessages((messages)=> [
+            ...messages,
+            {role: 'user', content: message},
+            {role: 'assistant', content: ''},
+        ])
+    }
+
     return (
     <Box
       width="100vw"
