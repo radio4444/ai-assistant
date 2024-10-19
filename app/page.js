@@ -1,7 +1,7 @@
 'use client';
 
 import {Box, Button, Stack, TextField} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 
 export default function Home() {
     const [messages, setMessages] = useState([{
@@ -9,7 +9,7 @@ export default function Home() {
         content: "Hi! I'm the AI-Assistant. How can I help you today?"
     }]);
     const [message, setMessage] = useState('');
-    const [isLoading, setIsLoading] = userState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const sendMessage = async () => {
         if (!message.trim() || isLoading) return;  // Don't send empty messages
@@ -68,10 +68,10 @@ export default function Home() {
         }
     };
 
-    const messageEndRef = useRef(null)
+    const messagesEndRef = useRef(null)
 
     const scrollToBottom = () => {
-        messageEndRef.current?.scrollIntoView({behavior: "smooth"})
+        messagesEndRef.current?.scrollIntoView({behavior: "smooth"})
     }
 
     useEffect(() => {
@@ -124,7 +124,7 @@ export default function Home() {
                             </Box>
                         </Box>
                     ))}
-                    <div ref ={messageEndRef} />
+                    <div ref ={messagesEndRef} />
                 </Stack>
                 <Stack direction={'row'} spacing={2}>
                     <TextField
